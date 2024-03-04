@@ -20,8 +20,12 @@ public class WordCounter{
                 wordCount.put(line, wordCount.getOrDefault(line, 0) + 1);
             }
         }
-        for(Map.Entry<String, Integer> entry : wordCount.entrySet()){
-            System.err.println(entry.getKey() + ": " + entry.getValue());
+        
+
+        try(BufferedWriter result = new BufferedWriter(new java.io.FileWriter(("mywordscount")))){
+            for(Map.Entry<String, Integer> entry : wordCount.entrySet()){
+                result.write(entry.getKey() + ": " + entry.getValue() + "\n");
+            }
         }
     }
 }
